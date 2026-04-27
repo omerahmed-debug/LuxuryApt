@@ -1,0 +1,20 @@
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .logo-bg { fill: #1a1a1a; }
+      .logo-text-gold { fill: #d4af37; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+      .logo-text-white { fill: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 300; letter-spacing: 2px; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="50" class="logo-bg" rx="4"/>
+  
+  <!-- BG Text -->
+  <text x="20" y="32" class="logo-text-gold" font-size="24" font-weight="600">BG</text>
+  
+  <!-- Bisrate Gabriel Text -->
+  <text x="60" y="32" class="logo-text-white" font-size="14">Bisrate Gabriel</text>
+</svg>
+
+<!-- Made with Bob -->

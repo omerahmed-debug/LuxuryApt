@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Manager - Bisrate Gabriel Apartments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .upload-zone {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s;
+        }
+        .upload-zone:hover {
+            border-color: #4299e1;
+            background-color: #ebf8ff;
+        }
+        .upload-zone.dragover {
+            border-color: #3182ce;
+            background-color: #bee3f8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-6">
+                <h1 class="text-3xl font-bold text-gray-900">Photo Manager</h1>
+                <p class="text-gray-600 mt-1">Upload and manage photos for your website</p>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Success Message -->
+            <div id="successMessage" class="hidden mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                <p class="font-medium">✓ Photo uploaded successfully!</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="hidden mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                <p class="font-medium" id="errorText"></p>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Upload New Photo</h2>
+                
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <!-- Photo Category -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Photo Category</label>
+                        <select id="photoCategory" name="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Select category...</option>
+                            <option value="hero">Hero Image (Main homepage image)</option>
+                            <option value="overview_main">Overview - Main Building</option>
+                            <option value="overview_secondary">Overview - Interior</option>
+                            <option value="contact_bg">Contact Background</option>
+                            <option value="floorplan_studio">Floor Plan - Studio</option>
+                            <option value="floorplan_1bed">Floor Plan - 1 Bedroom</option>
+                            <option value="floorplan_2bed">Floor Plan - 2 Bedroom</option>
+                            <option value="floorplan_3bed">Floor Plan - 3 Bedroom</option>
+                            <option value="floorplan_penthouse">Floor Plan - Penthouse</option>
+                            <option value="neighborhood_cityscape">Neighborhood - Cityscape</option>
+                            <option value="neighborhood_unity_park">Neighborhood - Unity Park</option>
+                            <option value="neighborhood_restaurant">Neighborhood - Restaurant</option>
+                            <option value="gallery">Gallery Photo</option>
+                        </select>
+                    </div>
+
+                    <!-- Gallery Caption (only for gallery photos) -->
+                    <div id="captionField" class="mb-4 hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Photo Caption (for gallery)</label>
+                        <input type="text" id="photoCaption" name="caption" placeholder="e.g., Elegant Lobby" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select Photo</label>
+                        <div id="dropZone" class="upload-zone rounded-lg p-8 text-center cursor-pointer">
+                            <input type="file" id="photoFile" name="photo" accept="image/*" class="hidden">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="mt-2 text-sm text-gray-600">
+                                <span class="font-semibold text-blue-600">Click to upload</span> or drag and drop
+                            </p>
+                            <p class="text-xs text-gray-500 mt-1">PNG, JPG, JPEG up to 10MB</p>
+                        </div>
+                        <div id="fileInfo" class="hidden mt-2 text-sm text-gray-600"></div>
+                    </div>
+
+                    <!-- Preview -->
+                    <div id="previewContainer" class="hidden mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Preview</label>
+                        <img id="preview" src="" alt="Preview" class="max-w-md rounded-lg border border-gray-300">
+                    </div>
+
+                    <!-- Upload Button -->
+                    <button type="submit" id="uploadBtn" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Upload Photo
+                    </button>
+                </form>
+            </div>
+
+            <!-- Current Photos -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">Current Photos</h2>
+                <div id="photosList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <p class="text-gray-500 col-span-full text-center py-8">Loading photos...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const photoFile = document.getElementById('photoFile');
+        const photoCategory = document.getElementById('photoCategory');
+        const captionField = document.getElementById('captionField');
+        const preview = document.getElementById('preview');
+        const previewContainer = document.getElementById('previewContainer');
+        const fileInfo = document.getElementById('fileInfo');
+        const uploadForm = document.getElementById('uploadForm');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        // Show/hide caption field based on category
+        photoCategory.addEventListener('change', function() {
+            if (this.value === 'gallery') {
+                captionField.classList.remove('hidden');
+            } else {
+                captionField.classList.add('hidden');
+            }
+        });
+
+        // Click to upload
+        dropZone.addEventListener('click', () => photoFile.click());
+
+        // Drag and drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                photoFile.files = files;
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // File selection
+        photoFile.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+
+        function handleFileSelect(file) {
+            fileInfo.textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            fileInfo.classList.remove('hidden');
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                preview.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Form submission
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const category = photoCategory.value;
+            const file = photoFile.files[0];
+
+            if (!category) {
+                showError('Please select a photo category');
+                return;
+            }
+
+            if (!file) {
+                showError('Please select a photo to upload');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('photo', file);
+            formData.append('category', category);
+            if (category === 'gallery') {
+                formData.append('caption', document.getElementById('photoCaption').value || 'Gallery Photo');
+            }
+
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Uploading...';
+
+            try {
+                const response = await fetch('/admin/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess();
+                    uploadForm.reset();
+                    previewContainer.classList.add('hidden');
+                    fileInfo.classList.add('hidden');
+                    captionField.classList.add('hidden');
+                    loadPhotos();
+                } else {
+                    showError(result.message || 'Upload failed');
+                }
+            } catch (error) {
+                showError('Upload failed: ' + error.message);
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = 'Upload Photo';
+            }
+        });
+
+        function showSuccess() {
+            const msg = document.getElementById('successMessage');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 5000);
+        }
+
+        function showError(message) {
+            const msg = document.getElementById('errorMessage');
+            document.getElementById('errorText').textContent = '✗ ' + message;
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 5000);
+        }
+
+        // Load current photos
+        async function loadPhotos() {
+            try {
+                const response = await fetch('/admin/photos');
+                const photos = await response.json();
+                
+                const photosList = document.getElementById('photosList');
+                if (photos.length === 0) {
+                    photosList.innerHTML = '<p class="text-gray-500 col-span-full text-center py-8">No photos uploaded yet</p>';
+                    return;
+                }
+
+                photosList.innerHTML = photos.map(photo => `
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <img src="${photo.url}" alt="${photo.name}" class="w-full h-48 object-cover rounded mb-2">
+                        <p class="text-sm font-medium text-gray-900 truncate">${photo.name}</p>
+                        <p class="text-xs text-gray-500">${photo.category}</p>
+                        ${photo.caption ? `<p class="text-xs text-gray-600 italic mt-1">"${photo.caption}"</p>` : ''}
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load photos:', error);
+            }
+        }
+
+        // Load photos on page load
+        loadPhotos();
+    </script>
+</body>
+</html>

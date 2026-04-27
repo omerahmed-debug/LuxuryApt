@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ property.name }} — {{ property.tagline }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-mark"></span>
+      <span class="logo-text">Bisrate Gabriel Apartments</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href="#overview" class="nav-link">Overview</a></li>
+      <li><a href="#floorplans" class="nav-link">Floor Plans</a></li>
+      <li><a href="#amenities" class="nav-link">Amenities</a></li>
+      <li><a href="#neighborhood" class="nav-link">Neighborhood</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Schedule Tour</a>
+    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu hidden md:hidden">
+    <div class="px-6 pb-6 flex flex-col gap-4">
+      <a href="#overview" class="mobile-nav-link">Overview</a>
+      <a href="#floorplans" class="mobile-nav-link">Floor Plans</a>
+      <a href="#amenities" class="mobile-nav-link">Amenities</a>
+      <a href="#neighborhood" class="mobile-nav-link">Neighborhood</a>
+      <a href="#contact" class="mobile-nav-link font-semibold">Schedule Tour →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero-section">
+  <div class="hero-bg">
+    <img src="{{ hero_image }}" alt="Bisrate Gabriel Apartments" class="hero-img" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal-up" style="animation-delay:0.2s">Addis Ababa, Ethiopia</p>
+    <h1 class="hero-title reveal-up" style="animation-delay:0.4s">{{ property.name }}</h1>
+    <p class="hero-tagline reveal-up" style="animation-delay:0.6s">{{ property.tagline }}</p>
+    <div class="hero-actions reveal-up" style="animation-delay:0.8s">
+      <a href="#contact" class="btn-primary">Schedule a Tour</a>
+      <a href="#floorplans" class="btn-ghost">View Residences</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="stat-num">{{ property.floors }}</span>
+      <span class="stat-label">Floors</span>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <span class="stat-num">{{ property.total_units }}</span>
+      <span class="stat-label">Residences</span>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <span class="stat-num">{{ property.year_built }}</span>
+      <span class="stat-label">Est.</span>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview" class="section-base bg-[var(--ivory)]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal-left">
+        <p class="section-eyebrow">The Residence</p>
+        <h2 class="section-title">A New Standard<br /><em>of Urban Living</em></h2>
+        <p class="section-body mt-6">{{ property.description }}</p>
+        <div class="mt-10 grid grid-cols-3 gap-6">
+          <div class="overview-stat">
+            <span class="ov-num">7</span>
+            <span class="ov-label">Stories</span>
+          </div>
+          <div class="overview-stat">
+            <span class="ov-num">12</span>
+            <span class="ov-label">Residences</span>
+          </div>
+          <div class="overview-stat">
+            <span class="ov-num">12+</span>
+            <span class="ov-label">Amenities</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right relative">
+        <div class="overview-image-stack">
+          <img src="{{ overview_main }}" alt="Building exterior" class="ov-img-main" />
+          <img src="{{ overview_secondary }}" alt="Interior" class="ov-img-secondary" />
+          <div class="ov-badge">
+            <span class="ov-badge-text">Est. 2026</span>
+            <span class="ov-badge-sub">Addis Ababa, Ethiopia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map" class="section-base bg-[var(--charcoal)]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal-up">
+      <p class="section-eyebrow light">Location</p>
+      <h2 class="section-title light">In the Heart of<br /><em>Everything</em></h2>
+      <p class="section-body light mt-4 max-w-xl mx-auto">{{ property.address }}</p>
+    </div>
+    <div class="map-container reveal-up">
+      <div id="map-frame" class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.3!2d38.7636!3d9.0320!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f3b6c5e5e5%3A0x0!2zOcKwMDEnNTUuMiJOIDM4wrA0NSc0OS4wIkU!5e0!3m2!1sen!2set!4v1710000000000"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-none"></iframe>
+      </div>
+      <div class="map-poi-panel">
+        <h3 class="poi-title">Nearby</h3>
+        {% for place in nearby %}
+        <div class="poi-item">
+          <div class="poi-icon-wrap poi-{{ place.type }}">
+            {% if place.type == 'restaurant' %}<i data-lucide="utensils" class="w-4 h-4"></i>
+            {% elif place.type == 'park' %}<i data-lucide="trees" class="w-4 h-4"></i>
+            {% elif place.type == 'transit' %}<i data-lucide="train" class="w-4 h-4"></i>
+            {% elif place.type == 'school' %}<i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            {% endif %}
+          </div>
+          <div class="poi-info">
+            <span class="poi-name">{{ place.name }}</span>
+            <span class="poi-desc">{{ place.desc }}</span>
+          </div>
+          <span class="poi-dist">{{ place.dist }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOOR PLANS -->
+<section id="floorplans" class="section-base bg-[var(--white)]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div class="reveal-left">
+        <p class="section-eyebrow">Residences</p>
+        <h2 class="section-title">Choose Your<br /><em>Perfect Home</em></h2>
+      </div>
+      <div class="fp-filters reveal-right">
+        <button class="fp-filter active" data-filter="all">All</button>
+        <button class="fp-filter" data-filter="0">Studio</button>
+        <button class="fp-filter" data-filter="1">1 Bed</button>
+        <button class="fp-filter" data-filter="2">2 Bed</button>
+        <button class="fp-filter" data-filter="3">3 Bed</button>
+        <button class="fp-filter" data-filter="4">Penthouse</button>
+      </div>
+    </div>
+
+    <div id="fp-grid" class="fp-grid">
+      {% for fp in floor_plans %}
+      <div class="fp-card reveal-up" data-beds="{{ fp.beds }}" style="animation-delay: {{ loop.index0 * 0.1 }}s">
+        <div class="fp-img-wrap">
+          <img src="{{ fp.image }}" alt="{{ fp.type }}" class="fp-img" />
+          <div class="fp-availability {% if fp.available <= 2 %}scarce{% endif %}">
+            {% if fp.available == 0 %}Waitlist{% elif fp.available <= 2 %}{{ fp.available }} Left{% else %}{{ fp.available }} Available{% endif %}
+          </div>
+        </div>
+        <div class="fp-body">
+          <div class="fp-type-row">
+            <h3 class="fp-type">{{ fp.type }}</h3>
+            <span class="fp-price">{{ "{:,}".format(fp.price_min) }} ETB+<span class="fp-price-mo">/mo</span></span>
+          </div>
+          <div class="fp-specs">
+            <span><i data-lucide="bed-double" class="w-4 h-4 inline mr-1"></i>{{ fp.beds if fp.beds > 0 else 'Studio' }} {% if fp.beds > 0 %}Bed{% endif %}</span>
+            <span><i data-lucide="bath" class="w-4 h-4 inline mr-1"></i>{{ fp.baths }} Bath</span>
+            <span><i data-lucide="square" class="w-4 h-4 inline mr-1"></i>{{ fp.sqft_min }}–{{ fp.sqft_max }} sf</span>
+          </div>
+          <ul class="fp-features">
+            {% for feat in fp.features %}
+            <li><i data-lucide="check" class="w-3 h-3 inline mr-2 text-[var(--gold)]"></i>{{ feat }}</li>
+            {% endfor %}
+          </ul>
+          <a href="#contact" class="fp-cta">Request Info</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TABLE -->
+<section id="pricing" class="section-base bg-[var(--ivory)]">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-12 reveal-up">
+      <p class="section-eyebrow">Availability & Pricing</p>
+      <h2 class="section-title">Current<br /><em>Availability</em></h2>
+    </div>
+    <div class="pricing-table reveal-up">
+      <div class="pt-header">
+        <span>Unit Type</span><span>Bed / Bath</span><span>Size</span><span>Starting From</span><span>Avail.</span><span></span>
+      </div>
+      {% for fp in floor_plans %}
+      <div class="pt-row">
+        <span class="pt-type">{{ fp.type }}</span>
+        <span>{{ fp.beds if fp.beds > 0 else '—' }} / {{ fp.baths }}</span>
+        <span>{{ fp.sqft_min }}–{{ fp.sqft_max }} sf</span>
+        <span class="pt-price">{{ "{:,}".format(fp.price_min) }} ETB<span class="text-xs opacity-60">/mo</span></span>
+        <span class="pt-avail {% if fp.available == 0 %}text-red-400{% elif fp.available <= 2 %}text-amber-500{% else %}text-green-500{% endif %}">
+          {{ fp.available if fp.available > 0 else 'Waitlist' }}
+        </span>
+        <a href="#contact" class="pt-btn">Inquire</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities" class="section-base bg-[var(--charcoal)]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal-up">
+      <p class="section-eyebrow light">Life at Bisrate Gabriel Apartments</p>
+      <h2 class="section-title light">Amenities<br /><em>Without Compromise</em></h2>
+    </div>
+    <div class="amenity-grid">
+      {% for am in amenities %}
+      <div class="amenity-card reveal-up" style="animation-delay: {{ loop.index0 * 0.07 }}s">
+        <div class="amenity-icon">
+          <i data-lucide="{{ am.icon }}" class="w-6 h-6"></i>
+        </div>
+        <h4 class="amenity-name">{{ am.name }}</h4>
+        <p class="amenity-desc">{{ am.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- NEIGHBORHOOD -->
+<section id="neighborhood" class="section-base bg-[var(--ivory)]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal-left">
+        <p class="section-eyebrow">The Neighborhood</p>
+        <h2 class="section-title">Addis Ababa Most<br /><em>Coveted Address</em></h2>
+        <p class="section-body mt-6">Positioned in the vibrant Loop — steps from Millennium Park, the lakefront, world-class dining, and Addis's major cultural institutions. Bisrate Gabriel Apartments connects you to the city's best while providing a serene refuge above it all.</p>
+        <div class="nb-list mt-8">
+          {% for place in nearby %}
+          <div class="nb-item">
+            <div class="nb-icon nb-{{ place.type }}">
+              {% if place.type == 'restaurant' %}<i data-lucide="utensils" class="w-4 h-4"></i>
+              {% elif place.type == 'park' %}<i data-lucide="trees" class="w-4 h-4"></i>
+              {% elif place.type == 'transit' %}<i data-lucide="train" class="w-4 h-4"></i>
+              {% elif place.type == 'school' %}<i data-lucide="graduation-cap" class="w-4 h-4"></i>
+              {% endif %}
+            </div>
+            <div>
+              <p class="nb-name">{{ place.name }} <span class="nb-dist">· {{ place.dist }}</span></p>
+              <p class="nb-desc">{{ place.desc }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="nb-image-grid">
+          <img src="{{ neighborhood_cityscape }}" alt="Addis Ababa Cityscape" class="nb-img nb-img-large" />
+          <img src="{{ neighborhood_unity_park }}" alt="Unity Park Addis Ababa" class="nb-img" />
+          <img src="{{ neighborhood_restaurant }}" alt="Ethiopian Restaurant" class="nb-img" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / TOUR -->
+<section id="contact" class="contact-section">
+  <div class="contact-bg">
+    <img src="{{ contact_bg }}" alt="Bisrate Gabriel Apartments lobby" class="contact-bg-img" />
+    <div class="contact-overlay"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal-left">
+        <p class="section-eyebrow light">Get in Touch</p>
+        <h2 class="section-title light">Schedule Your<br /><em>Private Tour</em></h2>
+        <p class="section-body light mt-6 opacity-80">Experience Bisrate Gabriel Apartments firsthand. Our leasing team will personally guide you through your future home and answer every question.</p>
+        <div class="contact-info mt-10">
+          <div class="ci-item">
+            <i data-lucide="map-pin" class="w-5 h-5 text-[var(--gold)]"></i>
+            <span>{{ property.address }}</span>
+          </div>
+          <div class="ci-item">
+            <i data-lucide="phone" class="w-5 h-5 text-[var(--gold)]"></i>
+            <span>+251 911 123456</span>
+          </div>
+          <div class="ci-item">
+            <i data-lucide="mail" class="w-5 h-5 text-[var(--gold)]"></i>
+            <span>leasing@bisrategabriel.com</span>
+          </div>
+          <div class="ci-item">
+            <i data-lucide="clock" class="w-5 h-5 text-[var(--gold)]"></i>
+            <span>Mon–Sat: 9am–6pm · Sun: 11am–4pm</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="contact-form-wrap">
+          <h3 class="cf-title">Request a Tour</h3>
+          <div id="form-success" class="form-success hidden">
+            <i data-lucide="check-circle" class="w-12 h-12 text-[var(--gold)] mx-auto mb-4"></i>
+            <p id="success-msg" class="text-center"></p>
+          </div>
+          <form id="tour-form" class="cf-form">
+            <div class="cf-row">
+              <div class="cf-field">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Abebe Kebede" required />
+              </div>
+              <div class="cf-field">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="abebe@email.com" required />
+              </div>
+            </div>
+            <div class="cf-row">
+              <div class="cf-field">
+                <label>Phone</label>
+                <input type="tel" name="phone" placeholder="+251 911 234567" required />
+              </div>
+              <div class="cf-field">
+                <label>Unit Type</label>
+                <select name="unit_type" required>
+                  <option value="" disabled selected>Select...</option>
+                  <option value="Studio">Studio</option>
+                  <option value="1 Bedroom">1 Bedroom</option>
+                  <option value="2 Bedroom">2 Bedroom</option>
+                  <option value="3 Bedroom">3 Bedroom</option>
+                  <option value="Penthouse">Penthouse</option>
+                </select>
+              </div>
+            </div>
+            <div class="cf-field">
+              <label>Preferred Tour Date</label>
+              <input type="date" name="date" required />
+            </div>
+            <div class="cf-field">
+              <label>Message (Optional)</label>
+              <textarea name="message" rows="3" placeholder="Any questions or preferences..."></textarea>
+            </div>
+            <button type="submit" id="form-submit" class="cf-submit">
+              <span id="btn-text">Schedule My Tour</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="max-w-7xl mx-auto px-6 py-14">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <div class="footer-logo">
+          <span class="logo-mark">BG</span>
+          <span class="logo-text">Bisrate Gabriel</span>
+        </div>
+        <p class="footer-desc mt-4">Luxury apartment living in the heart of Addis Ababa's most dynamic neighborhood.</p>
+        <div class="footer-social mt-6">
+          <a href="#" class="social-link"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="social-link"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="social-link"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#floorplans">Floor Plans</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#contact">Schedule Tour</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-links">
+          <li>1 Bisrate Gabriel Apartments</li>
+          <li>Addis Ababa, Ethiopia 60601</li>
+          <li class="mt-3">+251 911-0100</li>
+          <li>leasing@bisrategabriel.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bisrate Gabriel Apartments. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

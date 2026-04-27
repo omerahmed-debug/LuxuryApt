@@ -1,0 +1,63 @@
+{
+  "Unity_Park_Addis_Ababa_Ethiopia_3": "static/images/Unity_Park_Addis_Ababa_Ethiopia_3.jpg",
+  "overview_images": {
+    "main": "static/images/overview-main.jpg",
+    "secondary": "static/images/overview-secondary.jpg"
+  },
+  "floor_plan_images": {
+    "studio": "static/images/floorplans/studio.jpg",
+    "one_bed": "static/images/floorplans/1bed.jpg",
+    "two_bed": "static/images/floorplans/2bed.jpg",
+    "three_bed": "static/images/floorplans/3bed.jpg",
+    "penthouse": "static/images/floorplans/penthouse.jpg"
+  },
+  "neighborhood_images": {
+    "cityscape": "static/images/neighborhood/cityscape.jpg",
+    "unity_park": "static/images/unity_park.jpg",
+    "restaurant": "static/images/neighborhood/restaurant.jpg"
+  },
+  "contact_background": "static/images/contact-bg.jpg",
+  "gallery": [
+    {
+      "url": "static/images/gallery/lobby.jpg",
+      "caption": "Elegant Lobby"
+    },
+    {
+      "url": "static/images/gallery/living-room.jpg",
+      "caption": "Spacious Living Room"
+    },
+    {
+      "url": "static/images/gallery/kitchen.jpg",
+      "caption": "Modern Kitchen"
+    },
+    {
+      "url": "static/images/gallery/bathroom.jpg",
+      "caption": "Luxury Master Bath"
+    },
+    {
+      "url": "static/images/gallery/skyline.jpg",
+      "caption": "Addis Ababa Skyline View"
+    },
+    {
+      "url": "static/images/gallery/fitness.jpg",
+      "caption": "State-of-the-art Fitness Center"
+    },
+    {
+      "url": "static/images/gallery/city-view.jpg",
+      "caption": "City Views from Residence"
+    },
+    {
+      "url": "static/images/gallery/exterior.jpg",
+      "caption": "Building Exterior"
+    },
+    {
+      "url": "static/images/gallery/gallery-1777308672.jpg",
+      "caption": "Gallery Photo"
+    },
+    {
+      "url": "static/images/gallery/gallery-1777308765.jpg",
+      "caption": "Addis Ababa Skyview"
+    }
+  ],
+  "hero_image": "static/images/hero.jpg"
+}
