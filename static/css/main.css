@@ -159,7 +159,7 @@ body {
   max-width: 900px;
 }
 .hero-logo-img {
-  width: clamp(220px, 26vw, 420px);
+  width: clamp(165px, 19.5vw, 315px);
   height: auto;
   margin: 0 auto 1.5rem;
   display: block;
