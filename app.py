@@ -147,7 +147,7 @@ AMENITIES = [
     {"icon": "package", "name": "Package Room", "desc": "Refrigerated delivery storage & Amazon Hub"},
     {"icon": "paw-print", "name": "Pet Spa", "desc": "Dog wash, grooming station & pet relief area"},
     {"icon": "coffee", "name": "Resident Lounge", "desc": "Co-working spaces, private dining & demo kitchen"},
-    {"icon": "bicycle", "name": "Bike Storage", "desc": "Secured bike room with tune-up station"},
+    {"icon": "bike", "name": "Bike Storage", "desc": "Secured bike room with tune-up station"},
     {"icon": "sparkles", "name": "Dry Cleaning", "desc": "On-site valet dry cleaning & pressing service"},
     {"icon": "gamepad-2", "name": "Game Room", "desc": "Billiards, ping pong, arcade & screening room"},
 ]
