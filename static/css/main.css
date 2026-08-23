@@ -1,14 +1,14 @@
 /* =============================================
-   THE AVELON — Luxury Apartment Website
+   NOOR RESIDENCE — Apartment Website
    Aesthetic: Refined / Editorial / High-end
    Fonts: Cormorant Garamond (display) + Montserrat (UI)
-   Palette: Deep Charcoal · Warm Ivory · Champagne Gold · White
+   Palette: Noor Gold · Ink Charcoal · Cream · White
    ============================================= */
 
 :root {
-  --charcoal: #1a1a1a;
+  --charcoal: #1C1C1C;
   --charcoal-soft: #2a2a2a;
-  --ivory: #f7f5f0;
+  --ivory: #F2EAD9;
   --ivory-dark: #ede9e2;
   --gold: #c9a96e;
   --gold-light: #e0c899;
@@ -50,25 +50,12 @@ body {
 
 .nav-logo {
   display: flex;
-  align-items: baseline;
-  gap: 2px;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: 0.12em;
 }
-.logo-mark {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 400;
-  color: var(--gold);
-  line-height: 1;
-}
-.logo-text {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.3em;
-  padding-bottom: 2px;
+.nav-logo-img {
+  height: 48px;
+  width: auto;
 }
 
 .nav-link {
@@ -1060,8 +1047,11 @@ body {
 }
 .footer-logo {
   display: flex;
-  align-items: baseline;
-  gap: 2px;
+  align-items: center;
+}
+.footer-logo-img {
+  height: 56px;
+  width: auto;
 }
 .footer-desc {
   font-size: 0.8rem;

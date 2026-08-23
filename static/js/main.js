@@ -1,5 +1,5 @@
 /* =============================================
-   THE AVELON — Main JavaScript
+   NOOR RESIDENCE — Main JavaScript
    ============================================= */
 
 document.addEventListener("DOMContentLoaded", () => {

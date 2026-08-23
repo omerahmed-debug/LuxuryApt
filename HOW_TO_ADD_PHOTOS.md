@@ -1,6 +1,6 @@
 # How to Add Your Own Photos to the Website
 
-This guide will show you how to easily add your own photos to your Bisrate Gabriel Apartments website.
+This guide will show you how to easily add your own photos to your Noor Residence website.
 
 ## Quick Start
 

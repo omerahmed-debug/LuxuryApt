@@ -48,21 +48,24 @@ def path_to_url(path):
     return path
 
 # Property Data
+# NOTE: address/phone/email/floors/total_units/year_built/description are placeholders
+# pending confirmed details from the property owner (see intake sheet).
 PROPERTY = {
-    "name": "Bisrate Gabriel Apartments",
-    "tagline": "A legacy of comfort",
-    "address": "Gabriel, Addis Ababa, Ethiopia (Near South Africa Embassy)",
+    "name": "Noor Residence",
+    "tagline": "",
+    "address": "Address to be confirmed — Addis Ababa, Ethiopia",
+    "phone": "Phone to be confirmed",
+    "email": "Email to be confirmed",
+    "hours": "Hours to be confirmed",
     "lat": 9.0320,
     "lng": 38.7636,
     "floors": 7,
     "total_units": 12,
     "year_built": 2026,
     "description": (
-        "Bisrate Gabriel Apartments redefines luxury rental landscape — a soaring 7-story tower "
-        "where architecture, art, and lifestyle converge. Each residence is an exercise in "
-        "precision: floor-to-ceiling glass, curated finishes, and panoramic views that make "
-        "the city your canvas. Managed by a world-class hospitality team, Bisrate Gabriel Apartments offers "
-        "concierge living with the freedom of a modern rental."
+        "Noor Residence is a modern residential tower in Addis Ababa, offering thoughtfully "
+        "designed apartments with quality finishes and city views. Full details on the "
+        "building and its amenities are coming soon."
     ),
 }
 

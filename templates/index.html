@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ property.name }} — {{ property.tagline }}</title>
+  <title>{{ property.name }}{% if property.tagline %} — {{ property.tagline }}{% endif %}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" />
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -17,8 +20,7 @@
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
   <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
     <a href="#hero" class="nav-logo">
-      <span class="logo-mark"></span>
-      <span class="logo-text">Bisrate Gabriel Apartments</span>
+      <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Noor Residence" class="nav-logo-img" />
     </a>
     <ul class="hidden md:flex items-center gap-8">
       <li><a href="#overview" class="nav-link">Overview</a></li>
@@ -46,13 +48,13 @@
 <!-- HERO -->
 <section id="hero" class="hero-section">
   <div class="hero-bg">
-    <img src="{{ hero_image }}" alt="Bisrate Gabriel Apartments" class="hero-img" />
+    <img src="{{ hero_image }}" alt="Noor Residence" class="hero-img" />
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
     <p class="hero-eyebrow reveal-up" style="animation-delay:0.2s">Addis Ababa, Ethiopia</p>
     <h1 class="hero-title reveal-up" style="animation-delay:0.4s">{{ property.name }}</h1>
-    <p class="hero-tagline reveal-up" style="animation-delay:0.6s">{{ property.tagline }}</p>
+    {% if property.tagline %}<p class="hero-tagline reveal-up" style="animation-delay:0.6s">{{ property.tagline }}</p>{% endif %}
     <div class="hero-actions reveal-up" style="animation-delay:0.8s">
       <a href="#contact" class="btn-primary">Schedule a Tour</a>
       <a href="#floorplans" class="btn-ghost">View Residences</a>
@@ -90,11 +92,11 @@
         <p class="section-body mt-6">{{ property.description }}</p>
         <div class="mt-10 grid grid-cols-3 gap-6">
           <div class="overview-stat">
-            <span class="ov-num">7</span>
+            <span class="ov-num">{{ property.floors }}</span>
             <span class="ov-label">Stories</span>
           </div>
           <div class="overview-stat">
-            <span class="ov-num">12</span>
+            <span class="ov-num">{{ property.total_units }}</span>
             <span class="ov-label">Residences</span>
           </div>
           <div class="overview-stat">
@@ -108,7 +110,7 @@
           <img src="{{ overview_main }}" alt="Building exterior" class="ov-img-main" />
           <img src="{{ overview_secondary }}" alt="Interior" class="ov-img-secondary" />
           <div class="ov-badge">
-            <span class="ov-badge-text">Est. 2026</span>
+            <span class="ov-badge-text">Est. {{ property.year_built }}</span>
             <span class="ov-badge-sub">Addis Ababa, Ethiopia</span>
           </div>
         </div>
@@ -235,7 +237,7 @@
 <section id="amenities" class="section-base bg-[var(--charcoal)]">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal-up">
-      <p class="section-eyebrow light">Life at Bisrate Gabriel Apartments</p>
+      <p class="section-eyebrow light">Life at Noor Residence</p>
       <h2 class="section-title light">Amenities<br /><em>Without Compromise</em></h2>
     </div>
     <div class="amenity-grid">
@@ -260,7 +262,7 @@
       <div class="reveal-left">
         <p class="section-eyebrow">The Neighborhood</p>
         <h2 class="section-title">Addis Ababa Most<br /><em>Coveted Address</em></h2>
-        <p class="section-body mt-6">Positioned in the vibrant Loop — steps from Millennium Park, the lakefront, world-class dining, and Addis's major cultural institutions. Bisrate Gabriel Apartments connects you to the city's best while providing a serene refuge above it all.</p>
+        <p class="section-body mt-6">Positioned in Addis Ababa, close to the city's parks, dining, and major cultural institutions. Noor Residence connects you to the city's best while providing a serene refuge above it all.</p>
         <div class="nb-list mt-8">
           {% for place in nearby %}
           <div class="nb-item">
@@ -283,7 +285,7 @@
         <div class="nb-image-grid">
           <img src="{{ neighborhood_cityscape }}" alt="Addis Ababa Cityscape" class="nb-img nb-img-large" />
           <img src="{{ neighborhood_unity_park }}" alt="Unity Park Addis Ababa" class="nb-img" />
-          <img src="{{ neighborhood_restaurant }}" alt="Ethiopian Restaurant" class="nb-img" />
+          <img src="{{ neighborhood_restaurant }}" alt="Unity Park, Addis Ababa" class="nb-img" />
         </div>
       </div>
     </div>
@@ -293,7 +295,7 @@
 <!-- CONTACT / TOUR -->
 <section id="contact" class="contact-section">
   <div class="contact-bg">
-    <img src="{{ contact_bg }}" alt="Bisrate Gabriel Apartments lobby" class="contact-bg-img" />
+    <img src="{{ contact_bg }}" alt="Noor Residence lobby" class="contact-bg-img" />
     <div class="contact-overlay"></div>
   </div>
   <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -301,7 +303,7 @@
       <div class="reveal-left">
         <p class="section-eyebrow light">Get in Touch</p>
         <h2 class="section-title light">Schedule Your<br /><em>Private Tour</em></h2>
-        <p class="section-body light mt-6 opacity-80">Experience Bisrate Gabriel Apartments firsthand. Our leasing team will personally guide you through your future home and answer every question.</p>
+        <p class="section-body light mt-6 opacity-80">Experience Noor Residence firsthand. Our leasing team will personally guide you through your future home and answer every question.</p>
         <div class="contact-info mt-10">
           <div class="ci-item">
             <i data-lucide="map-pin" class="w-5 h-5 text-[var(--gold)]"></i>
@@ -309,15 +311,15 @@
           </div>
           <div class="ci-item">
             <i data-lucide="phone" class="w-5 h-5 text-[var(--gold)]"></i>
-            <span>+251 911 123456</span>
+            <span>{{ property.phone }}</span>
           </div>
           <div class="ci-item">
             <i data-lucide="mail" class="w-5 h-5 text-[var(--gold)]"></i>
-            <span>leasing@bisrategabriel.com</span>
+            <span>{{ property.email }}</span>
           </div>
           <div class="ci-item">
             <i data-lucide="clock" class="w-5 h-5 text-[var(--gold)]"></i>
-            <span>Mon–Sat: 9am–6pm · Sun: 11am–4pm</span>
+            <span>{{ property.hours }}</span>
           </div>
         </div>
       </div>
@@ -381,10 +383,9 @@
     <div class="grid md:grid-cols-4 gap-10">
       <div class="md:col-span-2">
         <div class="footer-logo">
-          <span class="logo-mark">BG</span>
-          <span class="logo-text">Bisrate Gabriel</span>
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Noor Residence" class="footer-logo-img" />
         </div>
-        <p class="footer-desc mt-4">Luxury apartment living in the heart of Addis Ababa's most dynamic neighborhood.</p>
+        <p class="footer-desc mt-4">Apartment living in Addis Ababa.</p>
         <div class="footer-social mt-6">
           <a href="#" class="social-link"><i data-lucide="instagram" class="w-5 h-5"></i></a>
           <a href="#" class="social-link"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -403,15 +404,14 @@
       <div>
         <h4 class="footer-heading">Contact</h4>
         <ul class="footer-links">
-          <li>1 Bisrate Gabriel Apartments</li>
-          <li>Addis Ababa, Ethiopia 60601</li>
-          <li class="mt-3">+251 911-0100</li>
-          <li>leasing@bisrategabriel.com</li>
+          <li>{{ property.address }}</li>
+          <li class="mt-3">{{ property.phone }}</li>
+          <li>{{ property.email }}</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Bisrate Gabriel Apartments. All rights reserved.</p>
+      <p>© 2026 Noor Residence. All rights reserved.</p>
       <div class="footer-legal">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms</a>
