@@ -94,7 +94,7 @@ body {
 }
 
 .mobile-menu {
-  background: rgba(26,26,26,0.98);
+  background: var(--charcoal);
   border-top: 1px solid rgba(201,169,110,0.2);
 }
 .mobile-nav-link {
@@ -248,8 +248,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 0;
-  background: rgba(26,26,26,0.85);
-  backdrop-filter: blur(8px);
+  background: var(--charcoal);
   border-top: 1px solid rgba(201,169,110,0.25);
 }
 .hero-stat {
