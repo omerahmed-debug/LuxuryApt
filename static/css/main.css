@@ -9,7 +9,6 @@
   --charcoal: #1C1C1C;
   --charcoal-soft: #2a2a2a;
   --ivory: #F2EAD9;
-  --ivory-dark: #ede9e2;
   --gold: #c9a96e;
   --gold-light: #e0c899;
   --white: #ffffff;
@@ -317,7 +316,7 @@ body {
 
 /* ============ OVERVIEW ============ */
 .overview-stat {
-  border-top: 1px solid var(--ivory-dark);
+  border-top: 1px solid rgba(201,169,110,0.2);
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -475,7 +474,7 @@ body {
   text-transform: uppercase;
   padding: 8px 16px;
   background: transparent;
-  border: 1px solid var(--ivory-dark);
+  border: 1px solid rgba(201,169,110,0.2);
   color: var(--text-mid);
   cursor: pointer;
   transition: all 0.2s;
@@ -497,7 +496,7 @@ body {
 }
 .fp-card {
   background: var(--white);
-  border: 1px solid var(--ivory-dark);
+  border: 1px solid rgba(201,169,110,0.2);
   transition: transform 0.3s var(--ease-luxury), box-shadow 0.3s;
   overflow: hidden;
 }
@@ -596,7 +595,7 @@ body {
 
 /* ============ PRICING TABLE ============ */
 .pricing-table {
-  border: 1px solid var(--ivory-dark);
+  border: 1px solid rgba(201,169,110,0.2);
   overflow: hidden;
 }
 .pt-header {
@@ -615,7 +614,7 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 1fr;
   padding: 18px 24px;
-  border-bottom: 1px solid var(--ivory-dark);
+  border-bottom: 1px solid rgba(201,169,110,0.2);
   align-items: center;
   font-size: 0.8rem;
   color: var(--text-mid);
@@ -710,7 +709,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ivory-dark);
+  border: 1px solid rgba(201,169,110,0.2);
   background: transparent;
   color: var(--text-mid);
   cursor: pointer;
@@ -842,7 +841,7 @@ body {
   align-items: flex-start;
   gap: 14px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--ivory-dark);
+  border-bottom: 1px solid rgba(201,169,110,0.2);
 }
 .nb-icon {
   width: 36px; height: 36px;
